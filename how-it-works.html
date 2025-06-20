@@ -512,46 +512,24 @@
             transform: translateX(-50%);
         }
 
-   @media (max-width: 900px) {
-  .how-steps {
-    flex-direction: column !important;
-    gap: 30px;
-    align-items: stretch;
-    padding: 0 10px;
-  }
-  .how-step {
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
-    margin: 0 auto;
-    text-align: center;
-  }
-
-    @media (max-width: 900px) {
-  .how-steps {
-    display: flex !important;
+   @media (max-width: 600px) {
+  .steps-container {
     flex-direction: column !important;
     gap: 30px !important;
     align-items: stretch !important;
     padding: 0 10px !important;
-    width: 100% !important;
-    max-width: 100vw !important;
-    box-sizing: border-box !important;
   }
-  .how-step {
+  .step {
     width: 100% !important;
     max-width: 100% !important;
     min-width: 0 !important;
     margin: 0 auto 20px auto !important;
     text-align: center !important;
     box-sizing: border-box !important;
+    position: static !important;
   }
-
-@media (max-width: 600px) {
-  .step-number::before,
-  .step-number::after {
-    width: 10px !important;
-    margin: 0 2px !important;
+  .step:not(:last-child)::after {
+    display: none !important;
   }
 }
     </style>
