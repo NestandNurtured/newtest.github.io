@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nest & Nurtured</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            max-width: 100vw;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-color: #f8f6f3;
+        }
+
+        .main-content,
+        .contact-main,
+        .pickup-main {
+    		width: 100%;
+    		max-width: 900px; /* or whatever your desktop max is */
+    		margin: 40px auto 0 auto;
+    		background: rgba(255,255,255,0.95);
+    		border-radius: 16px;
+    		box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    		padding: 40px 40px 60px 40px;
+    		box-sizing: border-box;
+	}
+
+	@media (max-width: 768px) {
+		.main-content,
+    		.contact-main,
+    		.pickup-main {
+       			padding: 20px 5px 30px 5px;
+        		margin: 20px 0 0 0;
+        		border-radius: 0;
+        		box-shadow: none;
+    		}
+    		.pricing-cards,
+    		.contact-container,
+    		.how-steps {
+        		flex-direction: column;
+        		gap: 20px;
+        		padding: 0 10px;
+    		}
+	}
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Header */
+        .header {
+            background-color: #f8f6f3;
+            padding: 15px 0;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-left {
+            display: flex;
+            gap: 30px;
+            font-size: 14px;
+            color: #8b7355;
+        }
+
+        .nav-left a {
+            color: #8b7355;
+            text-decoration: none;
+        }
+
+        .nav-left a:hover {
+            color: #6d5a42;
+        }
+
+        .logo-section {
+            text-align: center;
+            flex: 1;
+        }
+
+        .logo-img {
+            width: 80px; /* Adjust size as needed */
+            height: auto;
+            margin-bottom: 5px;
+        }
+
+        .brand-name {
+            font-size: 16px;
+            color: #8b7355;
+            font-weight: normal;
+            letter-spacing: 1px;
+        }
+
+        .nav-right {
+            display: flex;
+            gap: 30px;
+            font-size: 14px;
+            color: #8b7355;
+        }
+
+        .nav-right a {
+            color: #8b7355;
+            text-decoration: none;
+        }
+
+        .nav-right a:hover {
+            color: #6d5a42;
+        }
+        
+        .nav-right a.active {
+            font-weight: bold;
+        }
+
+        /* Page Styles */
+        .page-content {
+            padding: 80px 0;
+            background-color: #fdfdfa;
+        }
+        
+        .page-title {
+            text-align: center;
+            font-size: 4rem;
+            color: #4a3728;
+            margin-bottom: 60px;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+        }
+        
+        .pricing-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+        }
+        
+        .pricing-card {
+            flex: 1;
+            max-width: 350px;
+            padding: 30px;
+            background-color: #ffffff;
+            border: 1px solid #e5e5e5;
+            text-align: center;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pricing-card.recommended {
+            border-top: 5px solid #c4b09c;
+            transform: scale(1.05);
+        }
+        
+        .recommended-badge {
+            font-size: 0.8rem;
+            color: #8b7355;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .pricing-card h3 {
+            font-size: 1.8rem;
+            color: #4a3728;
+            margin-bottom: 20px;
+        }
+        
+        .pricing-card .card-image {
+            height: 200px;
+            margin-bottom: 20px;
+        }
+
+        .pricing-card .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        
+        .price {
+            font-size: 1.2rem;
+            color: #6d5a42;
+        }
+
+        .price span {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #4a3728;
+        }
+        
+        .service-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+            color: #6d5a42;
+            font-size: 0.9rem;
+        }
+
+        .service-list li {
+            margin-bottom: 10px;
+        }
+        
+        .card-tagline {
+            font-style: italic;
+            color: #8b7355;
+            font-size: 0.9rem;
+            margin-top: auto;
+            padding-top: 20px;
+        }
+        
+        .book-now-section {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .book-now-btn {
+            padding: 15px 40px;
+            border: none;
+            background-color: #4a3728;
+            color: white;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .book-now-btn:hover {
+            background-color: #382a1f;
+        }
+
+        /* Add-Ons Section */
+        .addons-section {
+            max-width: 800px;
+            margin: 0 auto 80px;
+            padding: 0 20px;
+        }
+
+        .addons-section .section-title {
+            text-align: center;
+            font-size: 4rem;
+            color: #4a3728;
+            margin-bottom: 40px;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+        }
+
+        .accordion-item {
+            background-color: #fff;
+            border: 1px solid #e5e5e5;
+            margin-bottom: 10px;
+        }
+
+        .accordion-header {
+            background-color: transparent;
+            color: #4a3728;
+            cursor: pointer;
+            padding: 20px;
+            width: 100%;
+            text-align: left;
+            border: none;
+            font-size: 1.5rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .accordion-header::after {
+            content: '+';
+            font-size: 2rem;
+            color: #8b7355;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-header::after {
+            transform: rotate(45deg);
+        }
+
+        .accordion-content {
+            padding: 0 20px;
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .accordion-content p {
+            padding: 20px 0;
+            color: #6d5a42;
+            font-size: 1.1rem;
+        }
+
+        /* Subscribe Section */
+        .subscribe-section {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 80px;
+            padding: 0 20px;
+        }
+
+        .subscribe-section .section-title {
+            font-size: 4rem;
+            color: #4a3728;
+            margin-bottom: 40px;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+        }
+        
+        .subscribe-card {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border: 1px solid #e5e5e5;
+        }
+
+        /* Unsure Section */
+        .unsure-section {
+            text-align: center;
+            padding: 60px 20px;
+            background-color: #f8f6f3;
+        }
+        
+        .unsure-section h2 {
+            font-size: 2.5rem;
+            color: #4a3728;
+            margin-bottom: 20px;
+        }
+
+        .unsure-section p {
+            color: #6d5a42;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-btn {
+             padding: 15px 40px;
+            border: 1px solid #4a3728;
+            background-color: transparent;
+            color: #4a3728;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+        }
+
+        .contact-btn:hover {
+            background-color: #4a3728;
+            color: white;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #4a3728;
+            color: white;
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-contact {
+            margin-bottom: 20px;
+        }
+
+        .footer-contact i {
+            margin-right: 10px;
+        }
+
+        .footer-brand {
+            font-size: 18px;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #6d5a42;
+            padding-top: 20px;
+            font-size: 12px;
+            color: #999;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-links">
+            <div class="nav-left">
+                <a href="index.html">Home</a>
+                <a href="how-it-works.html">How it Works</a>
+            </div>
+            <div class="logo-section">
+                <img src="images/logo.png?v=3" alt="Nest & Nurtured Logo" class="logo-img">
+                <div class="brand-name">Nest & Nurtured</div>
+            </div>
+            <div class="nav-right">
+                <a href="request-pickup.html" class="active">Request a Pick Up</a>
+                <a href="contact-us.html">Contact Us</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="page-content">
+        <h1 class="page-title">Cleaning, Tailored to You</h1>
+
+        <div class="pricing-container">
+            <!-- Maintenance Clean -->
+            <div class="pricing-card">
+                <h3>Maintenance Clean</h3>
+                <div class="card-image">
+                    <img src="images/maintenance-clean.jpg" alt="Maintenance Clean">
+                </div>
+                <p class="price">starting at<br><span>$25.00</span></p>
+                <ul class="service-list">
+                    <li>Pick up and Drop off</li>
+                    <li>Light surface wipe down</li>
+                    <li>Light vacuum</li>
+                    <li>Disinfect</li>
+                </ul>
+                <p class="card-tagline">perfect for routine touch ups</p>
+            </div>
+
+            <!-- Standard Clean -->
+            <div class="pricing-card recommended">
+                <span class="recommended-badge">Recommended</span>
+                <h3>Standard Clean</h3>
+                <div class="card-image">
+                    <img src="images/standard-clean.jpg" alt="Standard Clean">
+                </div>
+                <p class="price">starting at<br><span>$45.00</span></p>
+                <ul class="service-list">
+                    <li>Pick up and Drop off</li>
+                    <li>Full vacuum</li>
+                    <li>Wipe Down & Disinfect</li>
+                    <li>Basic spot clean</li>
+                </ul>
+                <p class="card-tagline">great for every day messes</p>
+            </div>
+
+            <!-- Deep Clean -->
+            <div class="pricing-card">
+                <h3>Deep Clean</h3>
+                <div class="card-image">
+                    <img src="images/deep-clean.jpg" alt="Deep Clean">
+                </div>
+                <p class="price">starting at<br><span>$65.00</span></p>
+                <ul class="service-list">
+                    <li>Pick up and Drop off</li>
+                    <li>Full disassembly</li>
+                    <li>Full vacuum</li>
+                    <li>Complete stain treatment</li>
+                    <li>Disinfect</li>
+                    <li>*Mold treatment included if needed*</li>
+                </ul>
+                <p class="card-tagline">best for spills, odors, and bodily fluids</p>
+            </div>
+        </div>
+
+        <hr style="max-width: 800px; margin: 0 auto 80px; border-top: 1px solid #e5e5e5;">
+
+        <!-- Optional Add-Ons -->
+        <section class="addons-section">
+            <h2 class="section-title">Optional Add-Ons</h2>
+            <div class="accordion">
+                <div class="accordion-item">
+                    <button class="accordion-header">Priority Clean</button>
+                    <div class="accordion-content">
+                        <p><b>+$25</b><br>Same-day turnaround if booked before 11 am, based on availability.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header">Multiple Seats</button>
+                    <div class="accordion-content">
+                        <p><b>$10 off</b> second seat<br><b>$15 off</b> third or more</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header">Subscribe & Save</button>
+                    <div class="accordion-content">
+                        <div class="subscribe-card" style="border: none; padding: 0; margin: 0; max-width: 100%;">
+                             <p class="price" style="font-size: 1.5rem; margin-bottom: 20px;">$55.00/month</p>
+                             <ul class="service-list" style="margin: 0; padding: 0; text-align: left;">
+                                 <li>Twice a month standard clean</li>
+                                 <li>Priority scheduling</li>
+                                 <li>Discounts for multiple seats</li>
+                             </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="book-now-section" style="padding: 40px 0;">
+            <h2 class="section-title" style="font-size: 4rem; margin-bottom: 20px; text-align: center; color: #4a3728;">Book Your Service</h2>
+            <p style="max-width: 600px; margin: 0 auto 40px; color: #6d5a42; text-align: center;">Select your desired service and be redirected to our secure booking site.</p>
+            <!-- Start Square Appointments Embed Code --><script src='https://square.site/appointments/buyer/widget/400ti0j9tsqijq/LNZVYG9FHK20F.js'></script><!-- End Square Appointments Embed Code -->
+        </div>
+
+        <!-- Not Sure -->
+        <section class="unsure-section">
+            <h2>Not sure what you need?</h2>
+            <p>You'll choose when you book — and we confirm everything.</p>
+            <a href="contact-us.html" class="contact-btn">Contact Us</a>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-contact">
+                <i class="fas fa-envelope"></i>
+                contact.nestandnurtured@gmail.com
+            </div>
+            <div class="footer-brand">
+                Nest & Nurtured
+            </div>
+        </div>
+    </footer>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const accordions = document.querySelectorAll('.accordion-header');
+
+            accordions.forEach(accordion => {
+                accordion.addEventListener('click', function() {
+                    const item = this.parentElement;
+                    item.classList.toggle('active');
+                    
+                    const content = this.nextElementSibling;
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                    } 
+                });
+            });
+        });
+    </script>
+</body>
+</html> 
