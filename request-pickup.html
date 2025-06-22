@@ -426,6 +426,25 @@
     margin: 0 auto 20px auto;
   }
 }
+    @media (max-width: 768px) {
+        .nav-links {
+            flex-direction: column;
+            gap: 15px;
+        }
+        .nav-left, .nav-right {
+            justify-content: center;
+            gap: 20px;
+            width: 100%;
+        }
+        .pricing-container {
+            flex-direction: column;
+            gap: 20px;
+            align-items: stretch;
+        }
+        .pricing-card {
+            margin-bottom: 20px;
+        }
+    }
 
     </style>
 </head>
